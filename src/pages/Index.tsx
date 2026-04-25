@@ -1,6 +1,7 @@
 import heroXray from "@/assets/hero-xray.jpg";
 import heatmapImg from "@/assets/heatmap.jpg";
 import dashboardImg from "@/assets/dashboard.jpg";
+import dectrocelLogo from "@/assets/dectrocel-logo.png";
 import {
   Activity, ShieldCheck, Cpu, Cloud, Database, FileCheck2, Zap, Stethoscope,
   Brain, ScanLine, Building2, Microscope, BarChart3, Workflow, Lock, Award,
@@ -37,15 +38,13 @@ const FeatureCard = ({ icon: Icon, title, desc }: { icon: any; title: string; de
 const Nav = () => (
   <header className="sticky top-0 z-40 backdrop-blur-md bg-background/80 border-b border-border">
     <div className="max-w-6xl mx-auto px-6 sm:px-10 h-16 flex items-center justify-between">
-      <div className="flex items-center gap-2.5">
-        <div className="h-9 w-9 rounded-lg bg-gradient-teal grid place-items-center shadow-glow">
-          <Activity className="h-5 w-5 text-primary-foreground" />
-        </div>
-        <div className="leading-tight">
+      <a href="#top" className="flex items-center gap-3">
+        <img src={dectrocelLogo} alt="Dectrocel logo" className="h-10 w-auto object-contain" />
+        <div className="leading-tight border-l border-border pl-3">
           <div className="font-display font-bold text-sm">Dectrocel<span className="text-primary">®</span></div>
           <div className="text-[10px] font-mono uppercase tracking-widest text-muted-foreground">DecXpert AI</div>
         </div>
-      </div>
+      </a>
       <nav className="hidden md:flex items-center gap-6 text-xs font-medium text-muted-foreground">
         <a href="#problem" className="hover:text-primary transition">Problem</a>
         <a href="#product" className="hover:text-primary transition">Platform</a>
@@ -739,9 +738,7 @@ const Footer = () => (
   <footer className="border-t border-border bg-card">
     <div className="max-w-6xl mx-auto px-6 sm:px-10 py-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-muted-foreground">
       <div className="flex items-center gap-2">
-        <div className="h-6 w-6 rounded-md bg-gradient-teal grid place-items-center">
-          <Activity className="h-3.5 w-3.5 text-primary-foreground" />
-        </div>
+        <img src={dectrocelLogo} alt="Dectrocel logo" className="h-7 w-auto object-contain" />
         <span>© {new Date().getFullYear()} Dectrocel® · DecXpert AI Radiology Platform</span>
       </div>
       <div className="flex items-center gap-4 font-mono uppercase tracking-widest text-[10px]">
