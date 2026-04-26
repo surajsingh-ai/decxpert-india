@@ -595,14 +595,198 @@ const Validation = () => (
 );
 
 /* ---------- 11. PRODUCT FAMILY ---------- */
+type ProductDetail = {
+  code: string;
+  t: string;
+  d: string;
+  icon: any;
+  primary?: boolean;
+  tagline: string;
+  highlights: { icon: any; t: string; d: string }[];
+  features: string[];
+  specs: { l: string; v: string }[];
+  useCases: string[];
+};
+
 const Family = () => {
-  const products = [
-    { code: "SX", t: "DecXpert-SX", d: "Complete body X-ray AI suite — 262 pathologies, 11 modules, TB engine.", icon: ScanLine, primary: true },
-    { code: "MX", t: "DecXpert-MX", d: "Manual drag-and-drop X-ray analysis tool for radiology desks.", icon: FileText },
-    { code: "AX", t: "DecXpert-AX", d: "Automated folder-scanning workflow system for high-volume centres.", icon: Workflow },
-    { code: "CT", t: "DecXpert-CT", d: "Advanced CT scan analysis platform for thoracic and abdominal imaging.", icon: Layers },
-    { code: "LGP", t: "My LGP Health", d: "AI-based chronic liver disease assessment mobile application.", icon: Activity },
+  const products: ProductDetail[] = [
+    {
+      code: "SX",
+      t: "DecXpert-SX",
+      d: "Complete body X-ray AI suite — 262 pathologies, 11 modules, TB engine.",
+      icon: ScanLine,
+      primary: true,
+      tagline: "Flagship complete-body X-ray AI decision support platform.",
+      highlights: [
+        { icon: Target, t: "262 pathologies", d: "Across 11 anatomical modules from a single dashboard." },
+        { icon: ShieldCheck, t: "11-sign TB engine", d: "Specialist TB checklist with per-sign confidence scores." },
+        { icon: Brain, t: "Grad-CAM heatmaps", d: "Lesion localisation rendered directly on the X-ray." },
+        { icon: WifiOff, t: "Offline-first", d: "Runs on Intel i3 / 4GB RAM — no GPU, no cloud." },
+      ],
+      features: [
+        "56 chest X-ray pathologies (airways, lungs, mediastinum, pleura, diaphragm)",
+        "206 musculoskeletal conditions across spine, knee, shoulder, wrist, pelvis, hand, foot, skull, elbow, hip",
+        "Auto body-part recognition — DICOM routed to correct AI model automatically",
+        "Image-quality gatekeeper: rotation, blur, exposure, artifact and crop checks",
+        "6-zone lung mapping (RUL · RML · RLL · LUL · LML · LLL)",
+        "Rib-level fracture localisation (Rib 1–12 · L / R) for medico-legal grade reports",
+        "Confidence score (0–100%) on every detected pathology",
+        "Structured PDF reporting with Grad-CAM heatmaps",
+        "Batch screening mode with positive/negative triage dashboards",
+      ],
+      specs: [
+        { l: "Pathologies", v: "262" },
+        { l: "Anatomical modules", v: "11" },
+        { l: "TB signs", v: "11 (separate scores)" },
+        { l: "Min CPU", v: "Intel i3" },
+        { l: "Min RAM", v: "4 GB" },
+        { l: "GPU", v: "Not required" },
+        { l: "Connectivity", v: "Fully offline" },
+        { l: "Compliance", v: "CDSCO · ISO 13485 · DPDP" },
+      ],
+      useCases: [
+        "NTEP TB screening camps and active case-finding drives",
+        "District & sub-district hospital chest X-ray reporting",
+        "Medical college teaching & second-read assistance",
+        "Air-gapped tertiary hospital deployments",
+      ],
+    },
+    {
+      code: "MX",
+      t: "DecXpert-MX",
+      d: "Manual drag-and-drop X-ray analysis tool for radiology desks.",
+      icon: FileText,
+      tagline: "Radiologist-controlled, on-demand X-ray AI second read.",
+      highlights: [
+        { icon: FileText, t: "Drag-and-drop", d: "Open any DICOM or JPEG/PNG instantly from the desktop." },
+        { icon: Brain, t: "AI second read", d: "Full DecXpert pathology engine on a per-case basis." },
+        { icon: FileCheck2, t: "PDF reports", d: "Structured, confidence-scored, ready for the patient file." },
+        { icon: Lock, t: "Local processing", d: "Image never leaves the workstation — DPDP compliant." },
+      ],
+      features: [
+        "Manual case-by-case analysis controlled by the radiologist",
+        "Supports DICOM, JPEG and PNG inputs",
+        "Full pathology coverage of the SX engine on demand",
+        "Side-by-side image and heatmap viewer",
+        "Editable findings with one-click PDF export",
+        "Runs entirely on the local workstation",
+      ],
+      specs: [
+        { l: "Mode", v: "Manual / on-demand" },
+        { l: "Input formats", v: "DICOM · JPEG · PNG" },
+        { l: "Min CPU", v: "Intel i3" },
+        { l: "Min RAM", v: "4 GB" },
+        { l: "GPU", v: "Not required" },
+        { l: "Connectivity", v: "Fully offline" },
+      ],
+      useCases: [
+        "Radiologist desktop second-read workflow",
+        "Outpatient clinics and private practice",
+        "Teleradiology hub adjudication",
+      ],
+    },
+    {
+      code: "AX",
+      t: "DecXpert-AX",
+      d: "Automated folder-scanning workflow system for high-volume centres.",
+      icon: Workflow,
+      tagline: "Hands-free, high-throughput AI for screening and PACS pipelines.",
+      highlights: [
+        { icon: Workflow, t: "Folder watcher", d: "Auto-processes any DICOM dropped in a watched folder." },
+        { icon: BarChart3, t: "Triage dashboards", d: "Positive / negative queues with priority escalation." },
+        { icon: Database, t: "PACS / RIS pull", d: "Vendor-agnostic integration with hospital systems." },
+        { icon: Cpu, t: "CPU-only at scale", d: "Process thousands of scans per day on commodity hardware." },
+      ],
+      features: [
+        "Automated folder monitoring with zero radiographer interaction",
+        "Batch screening mode for camps and mass screening drives",
+        "Positive / negative dashboards with triage queue prioritisation",
+        "PACS, RIS and HL7 export-ready integration",
+        "Auto body-part recognition and quality gating before inference",
+        "Audit log with per-case confidence scores",
+      ],
+      specs: [
+        { l: "Mode", v: "Automated batch" },
+        { l: "Throughput", v: "Thousands / day" },
+        { l: "Integration", v: "PACS · RIS · HL7" },
+        { l: "GPU", v: "Not required" },
+        { l: "OS", v: "Windows / Linux" },
+        { l: "Connectivity", v: "Offline or on-prem" },
+      ],
+      useCases: [
+        "TB screening camps and Active Case Finding (ACF)",
+        "High-volume district hospital chest X-ray pipelines",
+        "Insurance & employee health screening",
+        "Public health surveillance programmes",
+      ],
+    },
+    {
+      code: "CT",
+      t: "DecXpert-CT",
+      d: "Advanced CT scan analysis platform for thoracic and abdominal imaging.",
+      icon: Layers,
+      tagline: "Volumetric AI for thoracic and abdominal CT decision support.",
+      highlights: [
+        { icon: Layers, t: "Volumetric analysis", d: "Slice-by-slice and 3D pathology detection." },
+        { icon: Target, t: "Nodule stratification", d: "Size-based malignancy scoring on pulmonary nodules." },
+        { icon: Brain, t: "Explainable overlays", d: "Lesion overlays on key slices for radiologist review." },
+        { icon: FileCheck2, t: "Structured CT report", d: "Findings, measurements and confidence in one PDF." },
+      ],
+      features: [
+        "Thoracic CT analysis: nodules, masses, consolidation, fibrosis, pleural disease",
+        "Abdominal CT support for organ-level findings",
+        "Pulmonary nodule risk stratification (<6mm, 6–8, 8–20, 20–30, >30mm)",
+        "Multi-planar reconstruction (axial, coronal, sagittal) viewer",
+        "Structured CT report with measurements and confidence scores",
+        "DICOM-native, PACS-compatible workflow",
+      ],
+      specs: [
+        { l: "Modality", v: "CT (thoracic + abdominal)" },
+        { l: "Input", v: "DICOM series" },
+        { l: "Reconstruction", v: "Axial · Coronal · Sagittal" },
+        { l: "Integration", v: "PACS · RIS" },
+        { l: "Connectivity", v: "On-prem deployment" },
+      ],
+      useCases: [
+        "Lung cancer screening programmes",
+        "Tertiary hospital CT reporting assistance",
+        "Pre-surgical planning and follow-up imaging",
+      ],
+    },
+    {
+      code: "LGP",
+      t: "My LGP Health",
+      d: "AI-based chronic liver disease assessment mobile application.",
+      icon: Activity,
+      tagline: "Patient-facing AI screening for chronic liver disease risk.",
+      highlights: [
+        { icon: Activity, t: "Liver risk score", d: "AI-driven chronic liver disease risk assessment." },
+        { icon: Users, t: "Patient-facing app", d: "Designed for patients and primary care touchpoints." },
+        { icon: BarChart3, t: "Trend tracking", d: "Longitudinal score tracking and lifestyle insights." },
+        { icon: Lock, t: "Privacy-first", d: "DPDP-aligned data handling on the user's device." },
+      ],
+      features: [
+        "Symptom and risk-factor questionnaire driven by clinical guidelines",
+        "AI-based chronic liver disease risk score with severity bands",
+        "Personalised lifestyle and follow-up recommendations",
+        "Longitudinal tracking of risk over time",
+        "Shareable reports for treating physicians",
+        "Mobile-first, low-bandwidth friendly",
+      ],
+      specs: [
+        { l: "Platform", v: "Mobile application" },
+        { l: "Audience", v: "Patients · Primary care" },
+        { l: "Focus area", v: "Chronic liver disease" },
+        { l: "Compliance", v: "DPDP-aligned" },
+      ],
+      useCases: [
+        "Community-level liver health screening",
+        "Primary care risk triage and referral",
+        "Patient self-monitoring between consultations",
+      ],
+    },
   ];
+
   return (
     <section className="relative bg-gradient-surface">
       <div className="page-section">
@@ -610,24 +794,118 @@ const Family = () => {
         <div className="max-w-3xl">
           <span className="eyebrow">The DecXpert family</span>
           <h2 className="mt-4 font-display text-3xl sm:text-4xl font-bold">Five purpose-built tools. One unified clinical AI platform.</h2>
+          <p className="mt-3 text-sm text-muted-foreground">Click any product to view full specifications, features, and use cases.</p>
         </div>
         <div className="mt-10 grid md:grid-cols-2 lg:grid-cols-3 gap-5">
           {products.map((p) => (
-            <div key={p.code} className={`page-card p-6 relative overflow-hidden ${p.primary ? 'ring-2 ring-primary lg:col-span-1' : ''}`}>
-              {p.primary && (
-                <span className="absolute top-4 right-4 rounded-full bg-accent text-accent-foreground px-2.5 py-0.5 text-[10px] font-bold uppercase tracking-wider">Flagship</span>
-              )}
-              <div className="flex items-center gap-3 mb-4">
-                <div className="h-12 w-12 rounded-xl bg-gradient-teal grid place-items-center">
-                  <p.icon className="h-6 w-6 text-primary-foreground" />
+            <Dialog key={p.code}>
+              <DialogTrigger asChild>
+                <button
+                  type="button"
+                  className={`page-card p-6 relative overflow-hidden text-left w-full hover:border-primary/50 hover:shadow-elevated transition-all duration-300 cursor-pointer focus:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 ${p.primary ? 'ring-2 ring-primary' : ''}`}
+                >
+                  {p.primary && (
+                    <span className="absolute top-4 right-4 rounded-full bg-accent text-accent-foreground px-2.5 py-0.5 text-[10px] font-bold uppercase tracking-wider">Flagship</span>
+                  )}
+                  <div className="flex items-center gap-3 mb-4">
+                    <div className="h-12 w-12 rounded-xl bg-gradient-teal grid place-items-center">
+                      <p.icon className="h-6 w-6 text-primary-foreground" />
+                    </div>
+                    <div>
+                      <div className="page-marker">Product {p.code}</div>
+                      <div className="font-display font-bold text-lg">{p.t}</div>
+                    </div>
+                  </div>
+                  <p className="text-sm text-muted-foreground leading-relaxed">{p.d}</p>
+                  <div className="mt-4 inline-flex items-center gap-1.5 text-xs font-semibold text-primary">
+                    View details <ArrowRight className="h-3.5 w-3.5" />
+                  </div>
+                </button>
+              </DialogTrigger>
+              <DialogContent className="max-w-3xl max-h-[90vh] overflow-y-auto p-0">
+                <div className="bg-gradient-dark text-primary-foreground p-6 sm:p-8 rounded-t-lg">
+                  <div className="flex items-start gap-4">
+                    <div className="h-14 w-14 rounded-xl bg-primary-glow/20 border border-primary-glow/30 grid place-items-center flex-none">
+                      <p.icon className="h-7 w-7 text-primary-glow" />
+                    </div>
+                    <div className="min-w-0">
+                      <div className="page-marker text-primary-glow">Product {p.code}</div>
+                      <DialogTitle className="font-display text-2xl sm:text-3xl font-bold mt-1">{p.t}</DialogTitle>
+                      <DialogDescription className="text-white/80 mt-2">{p.tagline}</DialogDescription>
+                    </div>
+                  </div>
                 </div>
-                <div>
-                  <div className="page-marker">Product {p.code}</div>
-                  <div className="font-display font-bold text-lg">{p.t}</div>
+
+                <div className="p-6 sm:p-8 space-y-8">
+                  <div>
+                    <div className="eyebrow mb-3">Highlights</div>
+                    <div className="grid sm:grid-cols-2 gap-3">
+                      {p.highlights.map((h) => (
+                        <div key={h.t} className="flex gap-3 rounded-xl border border-border bg-secondary/40 p-3">
+                          <div className="h-9 w-9 rounded-lg bg-gradient-teal grid place-items-center flex-none">
+                            <h.icon className="h-4 w-4 text-primary-foreground" />
+                          </div>
+                          <div>
+                            <div className="font-semibold text-sm">{h.t}</div>
+                            <div className="text-xs text-muted-foreground leading-relaxed">{h.d}</div>
+                          </div>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+
+                  <div>
+                    <div className="eyebrow mb-3">Features</div>
+                    <ul className="space-y-2">
+                      {p.features.map((f) => (
+                        <li key={f} className="flex gap-3 text-sm">
+                          <CheckCircle2 className="h-4 w-4 text-primary mt-0.5 flex-none" />
+                          <span className="text-foreground/90">{f}</span>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+
+                  <div className="grid md:grid-cols-2 gap-6">
+                    <div>
+                      <div className="eyebrow mb-3">Specifications</div>
+                      <div className="rounded-xl border border-border divide-y divide-border overflow-hidden">
+                        {p.specs.map((s) => (
+                          <div key={s.l} className="flex items-center justify-between px-4 py-2.5 text-sm bg-secondary/30">
+                            <span className="text-muted-foreground">{s.l}</span>
+                            <span className="font-mono font-semibold text-foreground text-right">{s.v}</span>
+                          </div>
+                        ))}
+                      </div>
+                    </div>
+                    <div>
+                      <div className="eyebrow mb-3">Use cases</div>
+                      <ul className="space-y-2">
+                        {p.useCases.map((u) => (
+                          <li key={u} className="flex gap-3 text-sm">
+                            <ArrowRight className="h-4 w-4 text-primary mt-0.5 flex-none" />
+                            <span>{u}</span>
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
+                  </div>
+
+                  <div className="flex flex-wrap gap-2 pt-2 border-t border-border">
+                    <Badge icon={Award}>CDSCO Licensed</Badge>
+                    <Badge icon={ShieldCheck}>ISO 13485</Badge>
+                    <Badge icon={Lock}>DPDP Act 2023</Badge>
+                  </div>
+
+                  <a
+                    href="#contact"
+                    className="inline-flex items-center gap-2 rounded-full bg-primary px-5 py-2.5 text-sm font-semibold text-primary-foreground hover:bg-primary-deep transition"
+                  >
+                    Request demo for {p.t} <ArrowRight className="h-4 w-4" />
+                  </a>
                 </div>
-              </div>
-              <p className="text-sm text-muted-foreground leading-relaxed">{p.d}</p>
-            </div>
+              </DialogContent>
+            </Dialog>
           ))}
         </div>
       </div>
