@@ -607,6 +607,9 @@ type ProductDetail = {
   features: string[];
   specs: { l: string; v: string }[];
   useCases: string[];
+  validation?: { l: string; v: string }[];
+  pricing?: { price: string; term: string; includes: string; bullets: string[] };
+  deployments?: string[];
 };
 
 const Family = () => {
@@ -650,6 +653,32 @@ const Family = () => {
         "District & sub-district hospital chest X-ray reporting",
         "Medical college teaching & second-read assistance",
         "Air-gapped tertiary hospital deployments",
+      ],
+      validation: [
+        { l: "Overall accuracy", v: "~98% (clinical setting)" },
+        { l: "Training cohort", v: "10 Lakh+ images" },
+        { l: "Testing cohort", v: "~3 Lakh (expert annotated)" },
+        { l: "Validation cohort", v: "5 Lakh+ images" },
+        { l: "Peer review", v: "Nature Scientific Reports, 2024" },
+        { l: "Sensitivity / Specificity", v: "High / High" },
+        { l: "Generalisability", v: "Multi-vendor, multi-centre" },
+      ],
+      pricing: {
+        price: "₹1,25,000",
+        term: "3-Year License (Ex-Tax)",
+        includes: "20,000 Scans Included",
+        bullets: [
+          "Chest & Skeletal AI CAD",
+          "Offline-ready deployment",
+          "PACS / Mini-PACS integration",
+          "Software install, support & training",
+        ],
+      },
+      deployments: [
+        "Adani Foundation – community screening",
+        "10,000+ patients screened across 9 hospital pilots",
+        "50,000+ patients prioritised for immediate care escalation",
+        "10× faster diagnostic turnaround vs. baseline",
       ],
     },
     {
@@ -753,6 +782,24 @@ const Family = () => {
         "Tertiary hospital CT reporting assistance",
         "Pre-surgical planning and follow-up imaging",
       ],
+      validation: [
+        { l: "Architecture", v: "3D Convolutional Neural Networks" },
+        { l: "Normalisation", v: "Multi-window RGB · Z-score · CLAHE" },
+        { l: "Vendor handling", v: "Metadata-aware pipeline" },
+        { l: "Treatment efficacy uplift", v: "+52.8% (CT monitoring)" },
+        { l: "Case yield uplift", v: "+40.1% vs. baseline" },
+      ],
+      pricing: {
+        price: "₹3,00,000",
+        term: "3-Year License (Ex-Tax)",
+        includes: "6,000 Scans Included (Introductory Pricing)",
+        bullets: [
+          "3D Volumetric Analysis",
+          "Normalisation Pipeline (multi-window, Z-score, CLAHE)",
+          "Advanced Triage Reporting",
+          "PACS / Mini-PACS integration",
+        ],
+      },
     },
     {
       code: "LGP",
@@ -891,6 +938,55 @@ const Family = () => {
                       </ul>
                     </div>
                   </div>
+
+                  {p.validation && (
+                    <div>
+                      <div className="eyebrow mb-3">Clinical validation</div>
+                      <div className="rounded-xl border border-border divide-y divide-border overflow-hidden">
+                        {p.validation.map((s) => (
+                          <div key={s.l} className="flex items-center justify-between px-4 py-2.5 text-sm bg-secondary/30">
+                            <span className="text-muted-foreground">{s.l}</span>
+                            <span className="font-mono font-semibold text-foreground text-right">{s.v}</span>
+                          </div>
+                        ))}
+                      </div>
+                    </div>
+                  )}
+
+                  {p.deployments && (
+                    <div>
+                      <div className="eyebrow mb-3">Live deployments & impact</div>
+                      <ul className="space-y-2">
+                        {p.deployments.map((d) => (
+                          <li key={d} className="flex gap-3 text-sm">
+                            <MapPin className="h-4 w-4 text-primary mt-0.5 flex-none" />
+                            <span>{d}</span>
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
+                  )}
+
+                  {p.pricing && (
+                    <div className="rounded-2xl bg-gradient-dark text-primary-foreground p-6">
+                      <div className="page-marker text-primary-glow">Preferential pricing</div>
+                      <div className="mt-2 flex flex-wrap items-end gap-x-4 gap-y-1">
+                        <div className="font-display text-3xl font-extrabold">{p.pricing.price}</div>
+                        <div className="text-sm text-white/70">{p.pricing.term}</div>
+                      </div>
+                      <div className="mt-1 inline-block rounded-full bg-accent/90 text-accent-foreground px-3 py-1 text-xs font-bold uppercase tracking-wider">
+                        {p.pricing.includes}
+                      </div>
+                      <ul className="mt-4 grid sm:grid-cols-2 gap-2">
+                        {p.pricing.bullets.map((b) => (
+                          <li key={b} className="flex gap-2 text-sm text-white/90">
+                            <CheckCircle2 className="h-4 w-4 text-primary-glow mt-0.5 flex-none" />
+                            <span>{b}</span>
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
+                  )}
 
                   <div className="flex flex-wrap gap-2 pt-2 border-t border-border">
                     <Badge icon={Award}>CDSCO Licensed</Badge>
