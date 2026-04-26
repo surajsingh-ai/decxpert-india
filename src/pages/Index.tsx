@@ -654,6 +654,32 @@ const Family = () => {
         "Medical college teaching & second-read assistance",
         "Air-gapped tertiary hospital deployments",
       ],
+      validation: [
+        { l: "Overall accuracy", v: "~98% (clinical setting)" },
+        { l: "Training cohort", v: "10 Lakh+ images" },
+        { l: "Testing cohort", v: "~3 Lakh (expert annotated)" },
+        { l: "Validation cohort", v: "5 Lakh+ images" },
+        { l: "Peer review", v: "Nature Scientific Reports, 2024" },
+        { l: "Sensitivity / Specificity", v: "High / High" },
+        { l: "Generalisability", v: "Multi-vendor, multi-centre" },
+      ],
+      pricing: {
+        price: "₹1,25,000",
+        term: "3-Year License (Ex-Tax)",
+        includes: "20,000 Scans Included",
+        bullets: [
+          "Chest & Skeletal AI CAD",
+          "Offline-ready deployment",
+          "PACS / Mini-PACS integration",
+          "Software install, support & training",
+        ],
+      },
+      deployments: [
+        "Adani Foundation – community screening",
+        "10,000+ patients screened across 9 hospital pilots",
+        "50,000+ patients prioritised for immediate care escalation",
+        "10× faster diagnostic turnaround vs. baseline",
+      ],
     },
     {
       code: "MX",
