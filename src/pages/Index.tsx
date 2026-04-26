@@ -607,6 +607,9 @@ type ProductDetail = {
   features: string[];
   specs: { l: string; v: string }[];
   useCases: string[];
+  validation?: { l: string; v: string }[];
+  pricing?: { price: string; term: string; includes: string; bullets: string[] };
+  deployments?: string[];
 };
 
 const Family = () => {
