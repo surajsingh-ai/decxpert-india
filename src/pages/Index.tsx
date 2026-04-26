@@ -939,6 +939,55 @@ const Family = () => {
                     </div>
                   </div>
 
+                  {p.validation && (
+                    <div>
+                      <div className="eyebrow mb-3">Clinical validation</div>
+                      <div className="rounded-xl border border-border divide-y divide-border overflow-hidden">
+                        {p.validation.map((s) => (
+                          <div key={s.l} className="flex items-center justify-between px-4 py-2.5 text-sm bg-secondary/30">
+                            <span className="text-muted-foreground">{s.l}</span>
+                            <span className="font-mono font-semibold text-foreground text-right">{s.v}</span>
+                          </div>
+                        ))}
+                      </div>
+                    </div>
+                  )}
+
+                  {p.deployments && (
+                    <div>
+                      <div className="eyebrow mb-3">Live deployments & impact</div>
+                      <ul className="space-y-2">
+                        {p.deployments.map((d) => (
+                          <li key={d} className="flex gap-3 text-sm">
+                            <MapPin className="h-4 w-4 text-primary mt-0.5 flex-none" />
+                            <span>{d}</span>
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
+                  )}
+
+                  {p.pricing && (
+                    <div className="rounded-2xl bg-gradient-dark text-primary-foreground p-6">
+                      <div className="page-marker text-primary-glow">Preferential pricing</div>
+                      <div className="mt-2 flex flex-wrap items-end gap-x-4 gap-y-1">
+                        <div className="font-display text-3xl font-extrabold">{p.pricing.price}</div>
+                        <div className="text-sm text-white/70">{p.pricing.term}</div>
+                      </div>
+                      <div className="mt-1 inline-block rounded-full bg-accent/90 text-accent-foreground px-3 py-1 text-xs font-bold uppercase tracking-wider">
+                        {p.pricing.includes}
+                      </div>
+                      <ul className="mt-4 grid sm:grid-cols-2 gap-2">
+                        {p.pricing.bullets.map((b) => (
+                          <li key={b} className="flex gap-2 text-sm text-white/90">
+                            <CheckCircle2 className="h-4 w-4 text-primary-glow mt-0.5 flex-none" />
+                            <span>{b}</span>
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
+                  )}
+
                   <div className="flex flex-wrap gap-2 pt-2 border-t border-border">
                     <Badge icon={Award}>CDSCO Licensed</Badge>
                     <Badge icon={ShieldCheck}>ISO 13485</Badge>
