@@ -2,6 +2,7 @@ import heroXray from "@/assets/hero-xray.jpg";
 import heatmapImg from "@/assets/heatmap.jpg";
 import dashboardImg from "@/assets/dashboard.jpg";
 import dectrocelLogo from "@/assets/dectrocel-logo.png";
+import { Dialog, DialogContent, DialogDescription, DialogTitle, DialogTrigger } from "@/components/ui/dialog";
 import {
   Activity, ShieldCheck, Cpu, Cloud, Database, FileCheck2, Zap, Stethoscope,
   Brain, ScanLine, Building2, Microscope, BarChart3, Workflow, Lock, Award,
