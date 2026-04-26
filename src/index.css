@@ -68,9 +68,23 @@
     --foreground: 200 20% 96%;
     --card: 215 45% 9%;
     --card-foreground: 200 20% 96%;
+    --popover: 215 45% 9%;
+    --popover-foreground: 200 20% 96%;
     --primary: 184 80% 50%;
     --primary-foreground: 215 50% 6%;
+    --primary-glow: 184 85% 60%;
+    --primary-deep: 195 90% 18%;
+    --secondary: 215 35% 14%;
+    --secondary-foreground: 200 20% 96%;
+    --accent: 18 92% 58%;
+    --accent-foreground: 0 0% 100%;
+    --destructive: 358 75% 55%;
+    --destructive-foreground: 0 0% 100%;
+    --success: 158 70% 45%;
+    --success-foreground: 0 0% 100%;
     --border: 215 30% 18%;
+    --input: 215 30% 18%;
+    --ring: 184 80% 50%;
     --muted: 215 35% 12%;
     --muted-foreground: 200 15% 65%;
   }
