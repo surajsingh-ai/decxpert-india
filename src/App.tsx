@@ -12,6 +12,7 @@ import WorkflowScreen from "./pages/WorkflowScreen";
 import ReportsScreen from "./pages/ReportsScreen";
 import EvidenceScreen from "./pages/EvidenceScreen";
 import ContactScreen from "./pages/ContactScreen";
+import BrochureScreen from "./pages/BrochureScreen";
 import NotFound from "./pages/NotFound.tsx";
 
 const queryClient = new QueryClient();
@@ -32,6 +33,7 @@ const App = () => (
               <Route path="/reports" element={<ReportsScreen />} />
               <Route path="/evidence" element={<EvidenceScreen />} />
               <Route path="/contact" element={<ContactScreen />} />
+              <Route path="/brochure" element={<BrochureScreen />} />
             </Route>
             <Route path="*" element={<NotFound />} />
           </Routes>
