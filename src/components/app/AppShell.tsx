@@ -150,15 +150,22 @@ const BottomNav = () => {
             )}
           </NavLink>
         ))}
-        <a
-          href={BROCHURE_ITEM.href}
-          target="_blank"
-          rel="noopener noreferrer"
-          className="flex flex-col items-center justify-center gap-0.5 text-[10px] font-medium text-muted-foreground active:text-foreground"
+        <NavLink
+          to={BROCHURE_ITEM.to}
+          className={({ isActive }) =>
+            cn(
+              "flex flex-col items-center justify-center gap-0.5 text-[10px] font-medium transition-colors",
+              isActive ? "text-primary" : "text-muted-foreground active:text-foreground",
+            )
+          }
         >
-          <BROCHURE_ITEM.icon className="h-[18px] w-[18px]" />
-          <span className="truncate">{BROCHURE_ITEM.label}</span>
-        </a>
+          {({ isActive }) => (
+            <>
+              <BROCHURE_ITEM.icon className={cn("h-[18px] w-[18px]", isActive && "stroke-[2.5]")} />
+              <span className="truncate">{BROCHURE_ITEM.label}</span>
+            </>
+          )}
+        </NavLink>
       </div>
     </nav>
   );
