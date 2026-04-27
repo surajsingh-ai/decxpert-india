@@ -135,3 +135,16 @@
     @apply font-mono text-[10px] tracking-[0.25em] text-muted-foreground uppercase;
   }
 }
+
+@media print {
+  body * { visibility: hidden !important; }
+  #brochure-print, #brochure-print * { visibility: visible !important; }
+  #brochure-print {
+    position: absolute !important;
+    inset: 0 !important;
+    width: 100% !important;
+    padding: 24px !important;
+    background: white !important;
+  }
+  .print\:hidden { display: none !important; }
+}
