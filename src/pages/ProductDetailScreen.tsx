@@ -55,12 +55,13 @@ const ProductDetailScreen = () => {
 
       <Screen>
         <Tabs defaultValue="overview" className="w-full">
-          <div className="-mx-4 sm:-mx-6 px-4 sm:px-6 overflow-x-auto sticky top-14 bg-background/95 backdrop-blur z-30 py-2 border-b border-border">
+          <div className="-mx-4 sm:-mx-6 px-4 sm:px-6 overflow-x-auto sticky top-14 bg-background/95 backdrop-blur z-30 py-2 border-b border-border print:hidden">
             <TabsList className="inline-flex w-auto">
               <TabsTrigger value="overview">Overview</TabsTrigger>
               <TabsTrigger value="features">Features</TabsTrigger>
               <TabsTrigger value="specs">Specifications</TabsTrigger>
               <TabsTrigger value="useCases">Use Cases</TabsTrigger>
+              <TabsTrigger value="brochure">Brochure</TabsTrigger>
               <TabsTrigger value="demo">Demo</TabsTrigger>
             </TabsList>
           </div>
