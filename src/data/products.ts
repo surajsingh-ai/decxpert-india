@@ -71,17 +71,6 @@ export const products: ProductDetail[] = [
       { l: "Sensitivity / Specificity", v: "High / High" },
       { l: "Generalisability", v: "Multi-vendor, multi-centre" },
     ],
-    pricing: {
-      price: "₹1,25,000",
-      term: "3-Year License (Ex-Tax)",
-      includes: "20,000 Scans Included",
-      bullets: [
-        "Chest & Skeletal AI CAD",
-        "Offline-ready deployment",
-        "PACS / Mini-PACS integration",
-        "Software install, support & training",
-      ],
-    },
     deployments: [
       "Adani Foundation – community screening",
       "10,000+ patients screened across 9 hospital pilots",
