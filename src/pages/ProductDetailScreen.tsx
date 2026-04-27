@@ -17,6 +17,7 @@ const ProductDetailScreen = () => {
   const { slug = "" } = useParams();
   const navigate = useNavigate();
   const p = getProduct(slug);
+  const [openDialog, setOpenDialog] = useState<null | "pathologies" | "tb">(null);
 
   if (!p) {
     return (
