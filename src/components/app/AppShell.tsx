@@ -1,5 +1,5 @@
 import { NavLink, Outlet, useLocation } from "react-router-dom";
-import { Home, Boxes, Workflow, FileBarChart2, Microscope, Phone, Search, Bell, Sun, Moon, Menu } from "lucide-react";
+import { Home, Boxes, Workflow, FileBarChart2, Microscope, Phone, Search, Bell, Sun, Moon, Menu, BookOpen } from "lucide-react";
 import { useState } from "react";
 import dectrocelLogo from "@/assets/dectrocel-logo.png";
 import { cn } from "@/lib/utils";
