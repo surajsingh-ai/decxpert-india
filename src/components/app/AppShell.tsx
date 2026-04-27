@@ -1,5 +1,5 @@
 import { NavLink, Outlet, useLocation } from "react-router-dom";
-import { Home, Boxes, Workflow, FileBarChart2, Microscope, Phone, Search, Bell, Sun, Moon, Menu } from "lucide-react";
+import { Home, Boxes, Workflow, FileBarChart2, Microscope, Phone, Search, Bell, Sun, Moon, Menu, BookOpen } from "lucide-react";
 import { useState } from "react";
 import dectrocelLogo from "@/assets/dectrocel-logo.png";
 import { cn } from "@/lib/utils";
@@ -17,6 +17,9 @@ export const NAV_ITEMS = [
   { to: "/evidence", label: "Evidence", icon: Microscope },
   { to: "/contact", label: "Contact", icon: Phone },
 ];
+
+export const BROCHURE_URL = "/brochures/DecXpert_Brochure_2026.pdf";
+export const BROCHURE_ITEM = { href: BROCHURE_URL, label: "Brochure", icon: BookOpen };
 
 const screenTitle = (path: string) => {
   if (path.startsWith("/products/")) return "Product";
@@ -97,6 +100,15 @@ const SideNav = () => (
           {it.label}
         </NavLink>
       ))}
+      <a
+        href={BROCHURE_ITEM.href}
+        target="_blank"
+        rel="noopener noreferrer"
+        className="flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm font-medium text-foreground/80 hover:bg-muted transition-colors"
+      >
+        <BROCHURE_ITEM.icon className="h-4 w-4" />
+        {BROCHURE_ITEM.label}
+      </a>
     </div>
     <div className="p-3 border-t border-border">
       <div className="rounded-xl bg-gradient-teal p-3 text-primary-foreground">
@@ -110,32 +122,44 @@ const SideNav = () => (
   </aside>
 );
 
-const BottomNav = () => (
-  <nav className="md:hidden fixed bottom-0 inset-x-0 z-40 h-16 border-t border-border bg-background/95 backdrop-blur-md pb-[env(safe-area-inset-bottom)]">
-    <div className="grid grid-cols-6 h-full">
-      {NAV_ITEMS.map((it) => (
-        <NavLink
-          key={it.to}
-          to={it.to}
-          end={it.end}
-          className={({ isActive }) =>
-            cn(
-              "flex flex-col items-center justify-center gap-0.5 text-[10px] font-medium transition-colors",
-              isActive ? "text-primary" : "text-muted-foreground active:text-foreground",
-            )
-          }
+const BottomNav = () => {
+  const items = [...NAV_ITEMS];
+  return (
+    <nav className="md:hidden fixed bottom-0 inset-x-0 z-40 h-16 border-t border-border bg-background/95 backdrop-blur-md pb-[env(safe-area-inset-bottom)]">
+      <div className="grid grid-cols-7 h-full">
+        {items.map((it) => (
+          <NavLink
+            key={it.to}
+            to={it.to}
+            end={it.end}
+            className={({ isActive }) =>
+              cn(
+                "flex flex-col items-center justify-center gap-0.5 text-[10px] font-medium transition-colors",
+                isActive ? "text-primary" : "text-muted-foreground active:text-foreground",
+              )
+            }
+          >
+            {({ isActive }) => (
+              <>
+                <it.icon className={cn("h-[18px] w-[18px]", isActive && "stroke-[2.5]")} />
+                <span className="truncate">{it.label}</span>
+              </>
+            )}
+          </NavLink>
+        ))}
+        <a
+          href={BROCHURE_ITEM.href}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="flex flex-col items-center justify-center gap-0.5 text-[10px] font-medium text-muted-foreground active:text-foreground"
         >
-          {({ isActive }) => (
-            <>
-              <it.icon className={cn("h-[18px] w-[18px]", isActive && "stroke-[2.5]")} />
-              <span className="truncate">{it.label}</span>
-            </>
-          )}
-        </NavLink>
-      ))}
-    </div>
-  </nav>
-);
+          <BROCHURE_ITEM.icon className="h-[18px] w-[18px]" />
+          <span className="truncate">{BROCHURE_ITEM.label}</span>
+        </a>
+      </div>
+    </nav>
+  );
+};
 
 const MobileDrawer = ({ open, onOpenChange }: { open: boolean; onOpenChange: (v: boolean) => void }) => (
   <Sheet open={open} onOpenChange={onOpenChange}>
@@ -165,6 +189,16 @@ const MobileDrawer = ({ open, onOpenChange }: { open: boolean; onOpenChange: (v:
             {it.label}
           </NavLink>
         ))}
+        <a
+          href={BROCHURE_ITEM.href}
+          target="_blank"
+          rel="noopener noreferrer"
+          onClick={() => onOpenChange(false)}
+          className="flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm font-medium hover:bg-muted"
+        >
+          <BROCHURE_ITEM.icon className="h-4 w-4" />
+          {BROCHURE_ITEM.label}
+        </a>
       </div>
     </SheetContent>
   </Sheet>
