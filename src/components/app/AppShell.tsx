@@ -18,8 +18,8 @@ export const NAV_ITEMS = [
   { to: "/contact", label: "Contact", icon: Phone },
 ];
 
-export const BROCHURE_URL = "/brochures/DecXpert_Brochure_2026.pdf";
-export const BROCHURE_ITEM = { href: BROCHURE_URL, label: "Brochure", icon: BookOpen };
+export const BROCHURE_URL = "/brochure";
+export const BROCHURE_ITEM = { to: BROCHURE_URL, label: "Brochure", icon: BookOpen };
 
 const screenTitle = (path: string) => {
   if (path.startsWith("/products/")) return "Product";
