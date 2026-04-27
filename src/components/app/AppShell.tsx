@@ -100,15 +100,18 @@ const SideNav = () => (
           {it.label}
         </NavLink>
       ))}
-      <a
-        href={BROCHURE_ITEM.href}
-        target="_blank"
-        rel="noopener noreferrer"
-        className="flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm font-medium text-foreground/80 hover:bg-muted transition-colors"
+      <NavLink
+        to={BROCHURE_ITEM.to}
+        className={({ isActive }) =>
+          cn(
+            "flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm font-medium transition-colors",
+            isActive ? "bg-primary text-primary-foreground" : "text-foreground/80 hover:bg-muted",
+          )
+        }
       >
         <BROCHURE_ITEM.icon className="h-4 w-4" />
         {BROCHURE_ITEM.label}
-      </a>
+      </NavLink>
     </div>
     <div className="p-3 border-t border-border">
       <div className="rounded-xl bg-gradient-teal p-3 text-primary-foreground">
