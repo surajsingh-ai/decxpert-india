@@ -40,9 +40,9 @@ const FeatureRow = ({ icon: Icon, title, desc }: { icon: React.ElementType; titl
 );
 
 const Page = ({
-  num, title, subtitle, children,
-}: { num: string; title: string; subtitle?: string; children: React.ReactNode }) => (
-  <section className="page-card p-5 sm:p-7 space-y-5 break-inside-avoid">
+  id, num, title, subtitle, children,
+}: { id?: string; num: string; title: string; subtitle?: string; children: React.ReactNode }) => (
+  <section id={id} className="page-card p-5 sm:p-7 space-y-5 break-inside-avoid">
     <div className="flex items-start justify-between gap-3">
       <div>
         <div className="page-marker">DecXpert AI Radiology Suite · pg. {num}</div>
