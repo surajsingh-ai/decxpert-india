@@ -199,16 +199,19 @@ const MobileDrawer = ({ open, onOpenChange }: { open: boolean; onOpenChange: (v:
             {it.label}
           </NavLink>
         ))}
-        <a
-          href={BROCHURE_ITEM.href}
-          target="_blank"
-          rel="noopener noreferrer"
+        <NavLink
+          to={BROCHURE_ITEM.to}
           onClick={() => onOpenChange(false)}
-          className="flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm font-medium hover:bg-muted"
+          className={({ isActive }) =>
+            cn(
+              "flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm font-medium",
+              isActive ? "bg-primary text-primary-foreground" : "hover:bg-muted",
+            )
+          }
         >
           <BROCHURE_ITEM.icon className="h-4 w-4" />
           {BROCHURE_ITEM.label}
-        </a>
+        </NavLink>
       </div>
     </SheetContent>
   </Sheet>
