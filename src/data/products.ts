@@ -189,17 +189,6 @@ export const products: ProductDetail[] = [
       { l: "Treatment efficacy uplift", v: "+52.8% (CT monitoring)" },
       { l: "Case yield uplift", v: "+40.1% vs. baseline" },
     ],
-    pricing: {
-      price: "₹3,00,000",
-      term: "3-Year License (Ex-Tax)",
-      includes: "6,000 Scans Included (Introductory Pricing)",
-      bullets: [
-        "3D Volumetric Analysis",
-        "Normalisation Pipeline (multi-window, Z-score, CLAHE)",
-        "Advanced Triage Reporting",
-        "PACS / Mini-PACS integration",
-      ],
-    },
   },
   {
     code: "LGP",
