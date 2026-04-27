@@ -72,17 +72,35 @@ const ProductDetailScreen = () => {
 
           <TabsContent value="overview" className="space-y-5 mt-4">
             <div className="grid sm:grid-cols-2 gap-3">
-              {p.highlights.map((h) => (
-                <div key={h.t} className="page-card p-4 flex gap-3">
-                  <div className="h-9 w-9 rounded-lg bg-gradient-teal grid place-items-center shrink-0">
-                    <h.icon className="h-4 w-4 text-primary-foreground" />
-                  </div>
-                  <div className="min-w-0">
-                    <div className="font-semibold text-sm">{h.t}</div>
-                    <div className="text-xs text-muted-foreground leading-relaxed">{h.d}</div>
-                  </div>
-                </div>
-              ))}
+              {p.highlights.map((h) => {
+                const isPath = /pathologies/i.test(h.t);
+                const isTB = /TB/i.test(h.t) && /sign|engine|checklist/i.test(h.t);
+                const interactive = isPath || isTB;
+                const Comp: any = interactive ? "button" : "div";
+                return (
+                  <Comp
+                    key={h.t}
+                    onClick={interactive ? () => setOpenDialog(isPath ? "pathologies" : "tb") : undefined}
+                    className={`page-card p-4 flex gap-3 text-left w-full ${interactive ? "hover:border-primary/50 hover:shadow-elevated transition active:scale-[0.99] cursor-pointer" : ""}`}
+                  >
+                    <div className="h-9 w-9 rounded-lg bg-gradient-teal grid place-items-center shrink-0">
+                      <h.icon className="h-4 w-4 text-primary-foreground" />
+                    </div>
+                    <div className="min-w-0 flex-1">
+                      <div className="font-semibold text-sm flex items-center gap-1.5">
+                        {h.t}
+                        {interactive && <ChevronRight className="h-3.5 w-3.5 text-primary" />}
+                      </div>
+                      <div className="text-xs text-muted-foreground leading-relaxed">{h.d}</div>
+                      {interactive && (
+                        <div className="mt-1.5 text-[10px] uppercase tracking-wider font-bold text-primary">
+                          Tap to view full list
+                        </div>
+                      )}
+                    </div>
+                  </Comp>
+                );
+              })}
             </div>
 
             {p.code === "SX" && (
