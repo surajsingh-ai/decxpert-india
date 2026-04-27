@@ -2,7 +2,7 @@ import { Link, useParams, useNavigate } from "react-router-dom";
 import { getProduct } from "@/data/products";
 import { Screen } from "@/components/app/Screen";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { ArrowLeft, ArrowRight, CheckCircle2, MapPin, Award, ShieldCheck, Lock } from "lucide-react";
+import { ArrowLeft, ArrowRight, CheckCircle2, MapPin, Award, ShieldCheck, Lock, Printer, FileText } from "lucide-react";
 
 const Badge = ({ icon: Icon, children }: { icon: any; children: React.ReactNode }) => (
   <span className="inline-flex items-center gap-1.5 rounded-full border border-primary/20 bg-primary/5 px-2.5 py-1 text-[11px] font-semibold text-primary whitespace-nowrap">
@@ -55,12 +55,13 @@ const ProductDetailScreen = () => {
 
       <Screen>
         <Tabs defaultValue="overview" className="w-full">
-          <div className="-mx-4 sm:-mx-6 px-4 sm:px-6 overflow-x-auto sticky top-14 bg-background/95 backdrop-blur z-30 py-2 border-b border-border">
+          <div className="-mx-4 sm:-mx-6 px-4 sm:px-6 overflow-x-auto sticky top-14 bg-background/95 backdrop-blur z-30 py-2 border-b border-border print:hidden">
             <TabsList className="inline-flex w-auto">
               <TabsTrigger value="overview">Overview</TabsTrigger>
               <TabsTrigger value="features">Features</TabsTrigger>
               <TabsTrigger value="specs">Specifications</TabsTrigger>
               <TabsTrigger value="useCases">Use Cases</TabsTrigger>
+              <TabsTrigger value="brochure">Brochure</TabsTrigger>
               <TabsTrigger value="demo">Demo</TabsTrigger>
             </TabsList>
           </div>
@@ -187,6 +188,162 @@ const ProductDetailScreen = () => {
                 </li>
               ))}
             </ul>
+          </TabsContent>
+
+          <TabsContent value="brochure" className="mt-4">
+            <div className="flex justify-end gap-2 mb-3 print:hidden">
+              <button
+                onClick={() => window.print()}
+                className="inline-flex items-center gap-1.5 rounded-full bg-primary text-primary-foreground px-4 py-2 text-xs font-semibold hover:bg-primary-deep transition"
+              >
+                <Printer className="h-3.5 w-3.5" /> Print / Save as PDF
+              </button>
+            </div>
+
+            <article id="brochure-print" className="page-card p-6 sm:p-8 space-y-6 print:shadow-none print:border-0 print:p-0">
+              {/* Brochure header */}
+              <header className="flex items-start justify-between gap-4 border-b border-border pb-5">
+                <div className="min-w-0">
+                  <div className="text-[10px] uppercase tracking-[0.2em] font-bold text-primary">DecXpert · Product {p.code}</div>
+                  <h2 className="mt-1 font-display text-2xl sm:text-3xl font-extrabold leading-tight">{p.t}</h2>
+                  <p className="mt-1.5 text-sm text-muted-foreground italic">{p.tagline}</p>
+                </div>
+                <div className="h-14 w-14 rounded-xl bg-gradient-teal grid place-items-center shrink-0">
+                  <p.icon className="h-7 w-7 text-primary-foreground" />
+                </div>
+              </header>
+
+              {/* About */}
+              <section>
+                <h3 className="eyebrow">About</h3>
+                <p className="mt-2 text-sm leading-relaxed">{p.d}</p>
+              </section>
+
+              {/* Highlights */}
+              <section>
+                <h3 className="eyebrow">Key highlights</h3>
+                <div className="mt-2 grid sm:grid-cols-2 gap-2">
+                  {p.highlights.map((h) => (
+                    <div key={h.t} className="rounded-lg border border-border p-3">
+                      <div className="text-sm font-semibold flex items-center gap-2">
+                        <h.icon className="h-3.5 w-3.5 text-primary" /> {h.t}
+                      </div>
+                      <div className="text-xs text-muted-foreground mt-1">{h.d}</div>
+                    </div>
+                  ))}
+                </div>
+              </section>
+
+              {/* Features */}
+              <section>
+                <h3 className="eyebrow">Capabilities & features</h3>
+                <ul className="mt-2 grid sm:grid-cols-2 gap-x-5 gap-y-1.5">
+                  {p.features.map((f) => (
+                    <li key={f} className="flex gap-2 text-xs leading-relaxed">
+                      <CheckCircle2 className="h-3.5 w-3.5 text-primary mt-0.5 shrink-0" />
+                      <span>{f}</span>
+                    </li>
+                  ))}
+                </ul>
+              </section>
+
+              {/* Specs */}
+              <section className="grid sm:grid-cols-2 gap-5">
+                <div>
+                  <h3 className="eyebrow">Specifications</h3>
+                  <div className="mt-2 rounded-lg border border-border divide-y divide-border overflow-hidden">
+                    {p.specs.map((s) => (
+                      <div key={s.l} className="flex items-center justify-between px-3 py-2 text-xs">
+                        <span className="text-muted-foreground">{s.l}</span>
+                        <span className="font-mono font-semibold text-right">{s.v}</span>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+                {p.validation && (
+                  <div>
+                    <h3 className="eyebrow">Clinical validation</h3>
+                    <div className="mt-2 rounded-lg border border-border divide-y divide-border overflow-hidden">
+                      {p.validation.map((s) => (
+                        <div key={s.l} className="flex items-center justify-between px-3 py-2 text-xs">
+                          <span className="text-muted-foreground">{s.l}</span>
+                          <span className="font-mono font-semibold text-right">{s.v}</span>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+                )}
+              </section>
+
+              {/* Use cases */}
+              <section>
+                <h3 className="eyebrow">Use cases</h3>
+                <ul className="mt-2 grid sm:grid-cols-2 gap-x-5 gap-y-1.5">
+                  {p.useCases.map((u) => (
+                    <li key={u} className="flex gap-2 text-xs leading-relaxed">
+                      <ArrowRight className="h-3.5 w-3.5 text-primary mt-0.5 shrink-0" />
+                      <span>{u}</span>
+                    </li>
+                  ))}
+                </ul>
+              </section>
+
+              {/* Deployments */}
+              {p.deployments && (
+                <section>
+                  <h3 className="eyebrow">Live deployments & impact</h3>
+                  <ul className="mt-2 space-y-1.5">
+                    {p.deployments.map((d) => (
+                      <li key={d} className="flex gap-2 text-xs">
+                        <MapPin className="h-3.5 w-3.5 text-primary mt-0.5 shrink-0" />
+                        <span>{d}</span>
+                      </li>
+                    ))}
+                  </ul>
+                </section>
+              )}
+
+              {/* Pricing */}
+              {p.pricing && (
+                <section className="rounded-xl border border-primary/30 bg-primary/5 p-4">
+                  <h3 className="eyebrow text-primary">Preferential pricing</h3>
+                  <div className="mt-1.5 flex flex-wrap items-end gap-x-3 gap-y-1">
+                    <div className="font-display text-2xl font-extrabold text-primary">{p.pricing.price}</div>
+                    <div className="text-xs text-muted-foreground">{p.pricing.term}</div>
+                  </div>
+                  <div className="mt-1 inline-block rounded-full bg-accent text-accent-foreground px-2.5 py-0.5 text-[10px] font-bold uppercase tracking-wider">
+                    {p.pricing.includes}
+                  </div>
+                  <ul className="mt-2 grid sm:grid-cols-2 gap-1">
+                    {p.pricing.bullets.map((b) => (
+                      <li key={b} className="flex gap-2 text-xs">
+                        <CheckCircle2 className="h-3.5 w-3.5 text-primary mt-0.5 shrink-0" />
+                        <span>{b}</span>
+                      </li>
+                    ))}
+                  </ul>
+                </section>
+              )}
+
+              {/* Compliance */}
+              <section>
+                <h3 className="eyebrow">Compliance & certifications</h3>
+                <div className="mt-2 flex flex-wrap gap-2">
+                  <Badge icon={Award}>CDSCO Licensed</Badge>
+                  <Badge icon={ShieldCheck}>ISO 13485</Badge>
+                  <Badge icon={Lock}>DPDP Act 2023</Badge>
+                </div>
+              </section>
+
+              {/* Footer */}
+              <footer className="border-t border-border pt-4 flex flex-wrap items-center justify-between gap-3 text-[11px] text-muted-foreground">
+                <div className="flex items-center gap-2">
+                  <FileText className="h-3.5 w-3.5" />
+                  <span>DecXpert India · Product brochure · {p.t}</span>
+                </div>
+                <div>For tender packs and demos: contact our clinical solutions team.</div>
+              </footer>
+            </article>
           </TabsContent>
 
           <TabsContent value="demo" className="mt-4">
