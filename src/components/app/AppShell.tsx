@@ -122,32 +122,44 @@ const SideNav = () => (
   </aside>
 );
 
-const BottomNav = () => (
-  <nav className="md:hidden fixed bottom-0 inset-x-0 z-40 h-16 border-t border-border bg-background/95 backdrop-blur-md pb-[env(safe-area-inset-bottom)]">
-    <div className="grid grid-cols-6 h-full">
-      {NAV_ITEMS.map((it) => (
-        <NavLink
-          key={it.to}
-          to={it.to}
-          end={it.end}
-          className={({ isActive }) =>
-            cn(
-              "flex flex-col items-center justify-center gap-0.5 text-[10px] font-medium transition-colors",
-              isActive ? "text-primary" : "text-muted-foreground active:text-foreground",
-            )
-          }
+const BottomNav = () => {
+  const items = [...NAV_ITEMS];
+  return (
+    <nav className="md:hidden fixed bottom-0 inset-x-0 z-40 h-16 border-t border-border bg-background/95 backdrop-blur-md pb-[env(safe-area-inset-bottom)]">
+      <div className="grid grid-cols-7 h-full">
+        {items.map((it) => (
+          <NavLink
+            key={it.to}
+            to={it.to}
+            end={it.end}
+            className={({ isActive }) =>
+              cn(
+                "flex flex-col items-center justify-center gap-0.5 text-[10px] font-medium transition-colors",
+                isActive ? "text-primary" : "text-muted-foreground active:text-foreground",
+              )
+            }
+          >
+            {({ isActive }) => (
+              <>
+                <it.icon className={cn("h-[18px] w-[18px]", isActive && "stroke-[2.5]")} />
+                <span className="truncate">{it.label}</span>
+              </>
+            )}
+          </NavLink>
+        ))}
+        <a
+          href={BROCHURE_ITEM.href}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="flex flex-col items-center justify-center gap-0.5 text-[10px] font-medium text-muted-foreground active:text-foreground"
         >
-          {({ isActive }) => (
-            <>
-              <it.icon className={cn("h-[18px] w-[18px]", isActive && "stroke-[2.5]")} />
-              <span className="truncate">{it.label}</span>
-            </>
-          )}
-        </NavLink>
-      ))}
-    </div>
-  </nav>
-);
+          <BROCHURE_ITEM.icon className="h-[18px] w-[18px]" />
+          <span className="truncate">{BROCHURE_ITEM.label}</span>
+        </a>
+      </div>
+    </nav>
+  );
+};
 
 const MobileDrawer = ({ open, onOpenChange }: { open: boolean; onOpenChange: (v: boolean) => void }) => (
   <Sheet open={open} onOpenChange={onOpenChange}>
