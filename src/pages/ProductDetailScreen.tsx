@@ -1,8 +1,11 @@
+import { useState } from "react";
 import { Link, useParams, useNavigate } from "react-router-dom";
 import { getProduct } from "@/data/products";
 import { Screen } from "@/components/app/Screen";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { ArrowLeft, ArrowRight, CheckCircle2, MapPin, Award, ShieldCheck, Lock, Printer, FileText } from "lucide-react";
+import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription } from "@/components/ui/dialog";
+import { ArrowLeft, ArrowRight, CheckCircle2, MapPin, Award, ShieldCheck, Lock, Printer, FileText, ChevronRight } from "lucide-react";
+import { pathologies, pathologiesByBody, tbSigns } from "@/data/pathologies";
 
 const Badge = ({ icon: Icon, children }: { icon: any; children: React.ReactNode }) => (
   <span className="inline-flex items-center gap-1.5 rounded-full border border-primary/20 bg-primary/5 px-2.5 py-1 text-[11px] font-semibold text-primary whitespace-nowrap">
